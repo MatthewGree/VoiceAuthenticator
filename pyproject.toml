@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "voiceauthenticator"
+version = "0.1.0"
+description = ""
+authors = ["Mateusz Kmak <hamsterkmak@gmail.com>", "Natalia Kierat <255784@student.pwr.edu.pl>", "Julia Janiak <256422@student.pwr.edu.pl>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+torch = ">=1.7.0"
+torchaudio = ">=0.7.0"
+asteroid-filterbanks = "0.4.0"
+numpy = "^1.26.4"
+scipy = "^1.13.0"
+scikit-learn = "^1.4.2"
+tqdm = "^4.66.4"
+pyyaml = "^6.0.1"
+soundfile = "^0.12.1"
+speechbrain = "^1.0.0"
+jupyter = "^1.0.0"
+pandas = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
