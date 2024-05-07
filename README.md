@@ -16,12 +16,12 @@ Each of those folders should have the following structure:
 
 The data folder should also contain a vox1_vox1_meta.csv. It's tracked by git, so it should be there by default.
 
-Project stages are contained in jupyter notebooks in the root directory for easy
-access and code edition.
+Project stages are contained in jupyter notebooks in the [src/notebooks](src/notebooks) directory in order to facilitate 
+quick edits and live data inspection.
 
 Stages:
 
-1. [annotate_audio_files](annotate_audio_files.ipynb) - checks audio files from the VoxCeleb1 dataset and creates
-   a `annotations_with_metadata.json` file in the data folder, which contains all the relevant information for each
-   audio recording - it's path, user_id, train/test split etc.
+1. [annotate_audio_files](src/notebooks/annotate_audio_files.ipynb) - checks audio files from the VoxCeleb1 dataset and creates
+   a `annotations_with_metadata.json` file, which contains all the relevant information for each
+   audio recording - it's path relative to the project root, user_id, train/test split etc.
 
