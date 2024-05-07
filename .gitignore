@@ -4,8 +4,9 @@
 *.mp4
 *.pcm
 *.yaml
-data
-data/
+data/vox1_dev_wav/
+data/vox1_test_wav/
+data/annotations_with_metadata.json
 exps/
 core.*
 
