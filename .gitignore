@@ -1,6 +1,6 @@
 # Other files
 *.model
-*.wav
+# *.wav
 *.mp4
 *.pcm
 *.yaml
@@ -121,4 +121,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-/data
+data/vox1_dev_wav/
+data/vox1_test_wav/
