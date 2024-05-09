@@ -19,6 +19,7 @@ soundfile = "^0.12.1"
 speechbrain = "^1.0.0"
 jupyter = "^1.0.0"
 pandas = "^2.2.2"
+pydub = "^0.25.1"
 
 
 [build-system]
