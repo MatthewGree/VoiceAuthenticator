@@ -6,7 +6,8 @@
 *.yaml
 data/vox1_dev_wav/
 data/vox1_test_wav/
-data/annotations_with_metadata.json
+data/generated/
+pretrained_models/
 exps/
 core.*
 

@@ -20,6 +20,8 @@ speechbrain = "^1.0.0"
 jupyter = "^1.0.0"
 pandas = "^2.2.2"
 pydub = "^0.25.1"
+torchvision = "^0.18.0"
+more-itertools = "^10.2.0"
 
 
 [build-system]
