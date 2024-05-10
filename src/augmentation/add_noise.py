@@ -18,12 +18,12 @@ def add_noise_from_file(audio_file_path, noise_file_path = '../data/labrador-bar
 
 def add_gaussian_noise(audio_file_path:str, loc:float = 0.0, scale:float = 1.0):
     """
-    Add gaussian noise to audio.
+    Adds gaussian noise to audio.
 
     Parameters:
-        audio_file_path: path to the audio file,
-        loc: mean of the distribution,
-        scale: standard deviation of the distribution
+        audio_file_path (str): path to the audio file,
+        loc (float): mean of the distribution,
+        scale (float): standard deviation of the distribution
     """
 
     audio, samplerate = sf.read(audio_file_path)
