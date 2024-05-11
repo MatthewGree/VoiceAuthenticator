@@ -3,7 +3,7 @@ import numpy as np
 from pydub import AudioSegment
 import soundfile as sf
 
-def add_noise_from_file(audio_file_path, noise_file_path = '../data/labrador-barking.wav'):
+def add_noise_from_file(audio_file_path, noise_file_path = '../../data/labrador-barking.wav'):
     audio = AudioSegment.from_file(audio_file_path)
     noise = AudioSegment.from_file(noise_file_path)
 
