@@ -6,6 +6,7 @@
 *.yaml
 data/vox1_dev_wav/
 data/vox1_test_wav/
+data/vox2_test_mp4/
 data/generated/
 pretrained_models/
 exps/
