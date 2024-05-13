@@ -3,7 +3,7 @@ import numpy as np
 from pydub import AudioSegment
 import soundfile as sf
 
-def add_noise_from_file(audio_file_path, noise_file_path = '../../data/labrador-barking.wav'):
+def add_noise_from_file(audio_file_path, target_file_path, noise_file_path = '../../data/labrador-barking.wav'):
     audio = AudioSegment.from_file(audio_file_path)
     noise = AudioSegment.from_file(noise_file_path)
 
@@ -11,12 +11,10 @@ def add_noise_from_file(audio_file_path, noise_file_path = '../../data/labrador-
     noise = noise - 20 * np.log10(2 * max(noise.get_array_of_samples()) / max_amplitude)
     audio_with_noise = audio.overlay(noise)
 
-    base, ext = os.path.splitext(audio_file_path)
-    new_file_path = f"{base}_with_noise{ext}"
-    audio_with_noise.export(new_file_path, format='wav')
+    audio_with_noise.export(target_file_path, format='wav')
 
 
-def add_gaussian_noise(audio_file_path:str, loc:float = 0.0, scale:float = 1.0):
+def add_gaussian_noise(audio_file_path:str, target_file_path, loc:float = 0.0, scale:float = 1.0):
     """
     Adds gaussian noise to audio.
 
@@ -36,7 +34,4 @@ def add_gaussian_noise(audio_file_path:str, loc:float = 0.0, scale:float = 1.0):
 
     audio_noise = audio + reduced_noise
 
-    base, ext = os.path.splitext(audio_file_path)
-    new_file_path = f"{base}_gaussian_noise_loc_{loc}_scale_{scale}{ext}"
-
-    sf.write(file=new_file_path, data=audio_noise, samplerate=samplerate)
+    sf.write(file=target_file_path, data=audio_noise, samplerate=samplerate)

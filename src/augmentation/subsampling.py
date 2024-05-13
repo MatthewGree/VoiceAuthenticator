@@ -1,7 +1,8 @@
+from pathlib import Path
 import soundfile as sf
 import os
 
-def subsampling_audio(audio_file_path:str, interval:int):
+def subsampling_audio(source_audio_file_path: Path, target_audio_file_path: Path, interval:int):
     """
     Subsamples audio files from the given path.
 
@@ -10,10 +11,7 @@ def subsampling_audio(audio_file_path:str, interval:int):
         interval (int): the subsampling interval, which defines that every interval-th value from the original sound recording is retained.
     """
     
-    audio, samplerate = sf.read(audio_file_path)
+    audio, samplerate = sf.read(source_audio_file_path)
     audio_subsampled = audio[::interval]
 
-    base, ext = os.path.splitext(audio_file_path)
-    new_file_path = f"{base}_subsampling_{interval}{ext}"
-
-    sf.write(file=new_file_path, data=audio_subsampled, samplerate=samplerate//interval)
+    sf.write(file=target_audio_file_path, data=audio_subsampled, samplerate=samplerate//interval)
