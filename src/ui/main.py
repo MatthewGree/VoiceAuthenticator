@@ -13,8 +13,8 @@ class FaceAuthenticationApp(App):
 
     def __init__(self, user_service: UserService):
         super().__init__()
-        self.photo_booth = None
-        self.user_service = user_service
+        self.photo_booth: AudioBooth = AudioBooth()
+        self.user_service: UserService = user_service
         self.nickname_input: TextInput = TextInput()
 
     def build(self):
@@ -54,20 +54,20 @@ class FaceAuthenticationApp(App):
     def _register_user(self, _):
         if not self.__verify_authentication_data():
             return
-        self.user_service.register_user(self.nickname_input.text, self.photo_booth.get_image_path())
+        self.user_service.register_user(self.nickname_input.text, self.photo_booth.get_audio_path())
         create_popup("Info", "User Registered").open()
 
     def _login_user(self, _):
         if not self.__verify_authentication_data():
             return
-        login_result = self.user_service.login_user(self.nickname_input.text, self.photo_booth.get_image_path())
+        login_result = self.user_service.login_user(self.nickname_input.text, self.photo_booth.get_audio_path())
         if login_result:
             create_popup("Info", "Login Successful").open()
         else:
             create_popup("Info", "Login Failed").open()
 
     def __verify_authentication_data(self) -> bool:
-        if not self.photo_booth.picture_taken:
+        if not self.photo_booth.audio_recorded:
             create_popup("Error", "Take a picture first").open()
             return False
         if len(self.nickname_input.text) == 0:
@@ -76,8 +76,8 @@ class FaceAuthenticationApp(App):
         return True
 
     def on_stop(self):
-        self.photo_booth.release_camera_feed()
+        self.photo_booth.release_audio_resources()
 
 
 if __name__ == '__main__':
-    FaceAuthenticationApp(user_service=None).run()
+    FaceAuthenticationApp(user_service=UserService()).run()

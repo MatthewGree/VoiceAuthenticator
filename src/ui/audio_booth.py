@@ -1,21 +1,23 @@
 import wave
+from pathlib import Path
 
 import pyaudio
 from kivy.clock import Clock
-from kivy.core.text import Label
-from kivy.graphics.texture import Texture
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.uix.image import Image
+from kivy.uix.label import Label
+
+from src.config import project_paths
 
 
 class AudioBooth(BoxLayout):
     def __init__(self, **kwargs):
         super(AudioBooth, self).__init__(**kwargs)
+        self.audio_recorded: bool = False
         self._audio_stream = None
         self._audio_frames = []
         self._recording = False
-        self._audio_file_path = "audio/recording.wav"
+        self._audio_file_path = project_paths.get_project_root_path() / "src/ui/audio/recording.wav"
         self._sample_rate = 16000  # Set the sample rate to 16000 Hz
 
         # Recording status label
@@ -31,6 +33,9 @@ class AudioBooth(BoxLayout):
         stop_recording_button = Button(text='Stop Recording', size_hint=(1, 0.4))
         stop_recording_button.bind(on_press=self._stop_recording)
         self.add_widget(stop_recording_button)
+
+    def get_audio_path(self) -> Path:
+        return self._audio_file_path
 
     def _start_recording(self, _):
         if self._recording:
@@ -61,14 +66,14 @@ class AudioBooth(BoxLayout):
         self._audio_stream.close()
 
         p = pyaudio.PyAudio()
-        wf = wave.open(self._audio_file_path, 'wb')
+        wf = wave.open(str(self._audio_file_path), 'wb')
         wf.setnchannels(1)
         wf.setsampwidth(p.get_sample_size(pyaudio.paInt16))
         wf.setframerate(self._sample_rate)
         wf.writeframes(b''.join(self._audio_frames))
         wf.close()
-
-        self._status_label.text = 'Recording saved to {}'.format(self._audio_file_path)
+        self.audio_recorded = True
+        self._status_label.text = 'Recording saved'.format(self._audio_file_path)
 
     def release_audio_resources(self):
         if self._audio_stream is not None:
