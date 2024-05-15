@@ -25,6 +25,8 @@ more-itertools = "^10.2.0"
 evalify = "^0.1.4"
 matplotlib = "^3.8.4"
 seaborn = "^0.13.2"
+kivy = "^2.3.0"
+pyaudio = "^0.2.14"
 
 
 [build-system]
