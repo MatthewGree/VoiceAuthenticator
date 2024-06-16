@@ -1,10 +1,10 @@
 from pathlib import Path
 from typing import Literal
+import os
 
 
 def get_project_root_path() -> Path:
-    return Path(__file__).parent.parent.parent
-
+    return Path(__file__).resolve().parents[2]
 
 def __get_data_path() -> Path:
     return get_project_root_path() / "data"
@@ -34,4 +34,13 @@ def get_voxceleb_path(split: Literal["train", "test"]) -> Path:
 
 
 def get_voxceleb2_path() -> Path:
-    return __get_data_path() / "vox2_test_mp4" / "mp4"
+    return __get_data_path() / "vox2_test" / "mp4"
+
+def get_voxceleb2_wav_path() -> Path:
+    return __get_data_path() / "vox2_test" / "wav"
+
+def create_wav_dir_if_not_exists(id_path: Path):
+    wav_path = os.path.join(get_voxceleb2_wav_path(), id_path)
+    os.makedirs(os.path.join(wav_path, id_path), exist_ok=True)
+
+

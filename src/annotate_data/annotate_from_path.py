@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Dict, List, Literal, Iterable
+from moviepy.editor import VideoFileClip
 
 
 def __retrieve_wav_paths(sample_path: Path) -> Iterable[Path]:
@@ -11,7 +12,7 @@ def __retrieve_wav_paths(sample_path: Path) -> Iterable[Path]:
 def __wav_path_to_dict(wav_path: Path) -> Dict[str, str]:
     assert wav_path.suffix == ".wav"
     return {
-        "wav_path": str(wav_path),
+        "wav": str(wav_path),
     }
 
 
